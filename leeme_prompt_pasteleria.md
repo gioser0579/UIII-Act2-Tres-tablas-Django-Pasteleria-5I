@@ -1,10 +1,58 @@
-## 🧁 **PROYECTO PASTELERÍA – Django (Python en VS Code)**
+## 🧁 **PROYECTO DJANGO: PASTELERÍA**
+
+**Lenguaje:** Python
+**Framework:** Django
+**Editor:** Visual Studio Code
+
+---
+
+## 📁 **ESTRUCTURA COMPLETA DE CARPETAS Y ARCHIVOS**
+
+```
+UIII_pasteleria_0579/
+│
+├── backend_pasteleria/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   └── wsgi.py
+│
+├── app_pasteleria/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── migrations/
+│   │    └── __init__.py
+│   └── templates/
+│        ├── base.html
+│        ├── header.html
+│        ├── navbar.html
+│        ├── footer.html
+│        ├── inicio.html
+│        └── clientes/
+│             ├── agregar_cliente.html
+│             ├── ver_cliente.html
+│             ├── actualizar_cliente.html
+│             └── borrar_cliente.html
+│
+├── .venv/
+├── manage.py
+└── db.sqlite3
+```
+
+---
+
+## ⚙️ **PROCEDIMIENTO COMPLETO**
 
 ---
 
 ### **1️⃣ Crear carpeta del proyecto**
 
-Abre el explorador de archivos de tu PC y crea una nueva carpeta llamada:
+En tu explorador de archivos, crea:
 
 ```
 UIII_pasteleria_0579
@@ -15,20 +63,20 @@ UIII_pasteleria_0579
 ### **2️⃣ Abrir VS Code sobre la carpeta**
 
 * Abre **Visual Studio Code**
-* Haz clic en **Archivo → Abrir carpeta...**
-* Selecciona la carpeta **UIII_pasteleria_0579**
+* Menú → **Archivo → Abrir carpeta...**
+* Selecciona **UIII_pasteleria_0579**
 
 ---
 
 ### **3️⃣ Abrir terminal en VS Code**
 
-En VS Code presiona:
+Presiona:
 
 ```
 Ctrl + ñ
 ```
 
-o ve al menú:
+O entra en el menú:
 
 ```
 Ver → Terminal
@@ -38,27 +86,25 @@ Ver → Terminal
 
 ### **4️⃣ Crear entorno virtual `.venv`**
 
-En la terminal de VS Code ejecuta:
+En la terminal, ejecuta:
 
 ```bash
 python -m venv .venv
 ```
 
-Esto creará una carpeta oculta llamada `.venv` con el entorno virtual.
-
 ---
 
 ### **5️⃣ Activar el entorno virtual**
 
-Ejecuta en la terminal:
+En la terminal:
 
 ```bash
 .venv\Scripts\activate
 ```
 
-(Si usas Mac o Linux, sería: `source .venv/bin/activate`)
+(En Linux/Mac: `source .venv/bin/activate`)
 
-Verás que en la terminal aparece algo como:
+Debe aparecer algo como:
 
 ```
 (.venv) C:\Users\TuNombre\UIII_pasteleria_0579>
@@ -68,21 +114,21 @@ Verás que en la terminal aparece algo como:
 
 ### **6️⃣ Activar intérprete de Python**
 
+En VS Code:
+
 * Presiona **Ctrl + Shift + P**
-* Escribe: `Python: Select Interpreter`
-* Selecciona el que diga **.venv**
+* Busca: `Python: Select Interpreter`
+* Selecciona el que diga `.venv`
 
 ---
 
 ### **7️⃣ Instalar Django**
 
-Ejecuta:
-
 ```bash
 pip install django
 ```
 
-Verifica que se haya instalado correctamente:
+Verifica la instalación:
 
 ```bash
 django-admin --version
@@ -90,15 +136,15 @@ django-admin --version
 
 ---
 
-### **8️⃣ Crear el proyecto sin duplicar carpeta**
+### **8️⃣ Crear el proyecto Django**
 
-Dentro de la carpeta **UIII_pasteleria_0579**, ejecuta:
+En la raíz del proyecto:
 
 ```bash
 django-admin startproject backend_pasteleria .
 ```
 
-> Nota el punto `.` al final: evita que se cree una carpeta duplicada.
+> El punto final **(.)** evita que se cree una carpeta duplicada.
 
 ---
 
@@ -110,15 +156,13 @@ python manage.py runserver 8014
 
 ---
 
-### **🔟 Copiar y pegar el link**
+### **🔟 Abrir el enlace en navegador**
 
-En la terminal aparecerá algo como:
+Copia y pega en el navegador:
 
 ```
-Starting development server at http://127.0.0.1:8014/
+http://127.0.0.1:8014/
 ```
-
-Copia ese enlace y pégalo en tu navegador.
 
 ---
 
@@ -128,13 +172,11 @@ Copia ese enlace y pégalo en tu navegador.
 python manage.py startapp app_pasteleria
 ```
 
-Esto creará la carpeta `app_pasteleria` con sus archivos (`models.py`, `views.py`, etc.)
-
 ---
 
-### **1️⃣2️⃣ Crear el modelo CLIENTE en models.py**
+### **1️⃣2️⃣ Crear modelo CLIENTE en `models.py`**
 
-Dentro de `app_pasteleria/models.py` pega este código:
+Dentro de `app_pasteleria/models.py`:
 
 ```python
 from django.db import models
@@ -158,7 +200,7 @@ class Cliente(models.Model):
 
 ---
 
-### **1️⃣2️⃣.5️⃣ Realizar migraciones**
+### **1️⃣2️⃣.5️⃣ Crear migraciones**
 
 ```bash
 python manage.py makemigrations
@@ -167,15 +209,13 @@ python manage.py migrate
 
 ---
 
-### **1️⃣3️⃣ Trabajamos solo con el modelo CLIENTE**
+### **1️⃣3️⃣ Trabajar solo con modelo CLIENTE**
 
-(Saltamos por ahora los modelos de pedido y empleado)
+(Pedidos y empleados los agregaremos después)
 
 ---
 
-### **1️⃣4️⃣ Crear funciones CRUD en views.py**
-
-Dentro de `app_pasteleria/views.py`:
+### **1️⃣4️⃣ Crear funciones CRUD en `views.py`**
 
 ```python
 from django.shortcuts import render, redirect, get_object_or_404
@@ -234,17 +274,17 @@ def borrar_cliente(request, id):
 
 ### **1️⃣5️⃣ Crear carpeta `templates`**
 
-Dentro de `app_pasteleria`, crea una carpeta:
+Dentro de `app_pasteleria`:
 
 ```
-app_pasteleria/templates
+app_pasteleria/templates/
 ```
 
 ---
 
-### **1️⃣6️⃣ Crear archivos HTML base**
+### **1️⃣6️⃣ Crear archivos HTML principales**
 
-Crea dentro de `templates`:
+Dentro de `templates`:
 
 ```
 base.html
@@ -256,7 +296,7 @@ inicio.html
 
 ---
 
-### **1️⃣7️⃣ En base.html incluye Bootstrap**
+### **1️⃣7️⃣ Agregar Bootstrap en `base.html`**
 
 ```html
 <!DOCTYPE html>
@@ -265,6 +305,7 @@ inicio.html
     <meta charset="UTF-8">
     <title>{% block title %}Pastelería{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
     {% include 'header.html' %}
@@ -280,14 +321,10 @@ inicio.html
 
 ---
 
-### **1️⃣8️⃣ Navbar con menús**
-
-(`navbar.html`)
-
-Incluye iconos (de Bootstrap Icons):
+### **1️⃣8️⃣ Crear menú de navegación (`navbar.html`)**
 
 ```html
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><i class="bi bi-cupcake"></i> Sistema de Administración Pastelería</a>
     <div class="collapse navbar-collapse">
@@ -326,9 +363,7 @@ Incluye iconos (de Bootstrap Icons):
 
 ---
 
-### **1️⃣9️⃣ Footer fijo**
-
-(`footer.html`)
+### **1️⃣9️⃣ Footer fijo (`footer.html`)**
 
 ```html
 <footer class="bg-dark text-white text-center py-3 fixed-bottom">
@@ -338,15 +373,13 @@ Incluye iconos (de Bootstrap Icons):
 
 ---
 
-### **2️⃣0️⃣ Inicio con imagen e información**
-
-(`inicio.html`)
+### **2️⃣0️⃣ Página de inicio (`inicio.html`)**
 
 ```html
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="text-center">Bienvenido al Sistema de Administración de Pastelería</h1>
-<p class="text-center">Gestiona clientes, pedidos y empleados fácilmente.</p>
+<h1 class="text-center text-primary">Bienvenido al Sistema de Administración de Pastelería</h1>
+<p class="text-center text-muted">Gestiona clientes, pedidos y empleados fácilmente.</p>
 <div class="text-center mt-4">
   <img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Cinepolis_logo.svg" width="300">
 </div>
@@ -355,19 +388,19 @@ Incluye iconos (de Bootstrap Icons):
 
 ---
 
-### **2️⃣1️⃣ Crear subcarpeta `clientes`**
+### **2️⃣1️⃣ Crear carpeta `clientes`**
 
-Dentro de `app_pasteleria/templates`:
+Dentro de `templates`:
 
 ```
-clientes/
+app_pasteleria/templates/clientes/
 ```
 
 ---
 
-### **2️⃣2️⃣ Crear archivos HTML CRUD**
+### **2️⃣2️⃣ Crear archivos CRUD HTML**
 
-Crea dentro:
+Crea:
 
 ```
 agregar_cliente.html
@@ -376,11 +409,13 @@ actualizar_cliente.html
 borrar_cliente.html
 ```
 
-*(Si quieres, te puedo poner el contenido completo de cada uno después.)*
+*(Te puedo enviar el código completo de estos 4 archivos si quieres después.)*
 
 ---
 
-### **2️⃣4️⃣ Crear `urls.py` en app_pasteleria**
+### **2️⃣4️⃣ Crear `urls.py` en la app**
+
+Dentro de `app_pasteleria/urls.py`:
 
 ```python
 from django.urls import path
@@ -398,9 +433,9 @@ urlpatterns = [
 
 ---
 
-### **2️⃣5️⃣ Registrar la app en settings.py**
+### **2️⃣5️⃣ Agregar app en `settings.py`**
 
-En `backend_pasteleria/settings.py`, busca `INSTALLED_APPS` y agrega:
+En `backend_pasteleria/settings.py`, dentro de `INSTALLED_APPS`:
 
 ```python
 'app_pasteleria',
@@ -408,7 +443,7 @@ En `backend_pasteleria/settings.py`, busca `INSTALLED_APPS` y agrega:
 
 ---
 
-### **2️⃣6️⃣ Configurar urls.py del proyecto principal**
+### **2️⃣6️⃣ Configurar `urls.py` principal**
 
 En `backend_pasteleria/urls.py`:
 
@@ -435,7 +470,7 @@ from .models import Cliente
 admin.site.register(Cliente)
 ```
 
-Y luego:
+Y vuelve a ejecutar:
 
 ```bash
 python manage.py makemigrations
@@ -444,58 +479,33 @@ python manage.py migrate
 
 ---
 
-### **2️⃣8️⃣ Estilo**
+### **2️⃣8️⃣ Colores y estilo**
 
-Usa **colores pastel o tonos suaves** en Bootstrap (bg-light, btn-primary, text-muted).
-
----
-
-### **2️⃣9️⃣ Estructura final de carpetas**
-
-```
-UIII_pasteleria_0579/
-│
-├── backend_pasteleria/
-│   ├── settings.py
-│   ├── urls.py
-│   └── ...
-│
-├── app_pasteleria/
-│   ├── templates/
-│   │   ├── base.html
-│   │   ├── navbar.html
-│   │   ├── footer.html
-│   │   ├── inicio.html
-│   │   └── clientes/
-│   │       ├── agregar_cliente.html
-│   │       ├── ver_cliente.html
-│   │       ├── actualizar_cliente.html
-│   │       └── borrar_cliente.html
-│   ├── models.py
-│   ├── views.py
-│   ├── urls.py
-│   └── admin.py
-│
-├── .venv/
-└── manage.py
-```
+Usa tonos pastel o colores suaves de Bootstrap (`bg-light`, `text-muted`, `btn-outline-primary`).
 
 ---
 
-### **3️⃣0️⃣ Proyecto totalmente funcional 🎉**
+### **2️⃣9️⃣ Verifica estructura de carpetas**
+
+(La misma mostrada al inicio ✅)
 
 ---
 
-### **3️⃣1️⃣ Ejecutar el servidor en el puerto 8014**
+### **3️⃣0️⃣ Proyecto funcional**
+
+Ya puedes ingresar a las páginas de clientes, agregar, ver, editar o borrar.
+
+---
+
+### **3️⃣1️⃣ Ejecutar servidor**
 
 ```bash
 python manage.py runserver 8014
 ```
 
-Abre el enlace en el navegador:
+Y abrir:
 
 ```
 http://127.0.0.1:8014/
 ```
-
 
